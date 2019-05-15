@@ -1,7 +1,23 @@
 <template>
-  <div class="home">
-    <h1>Homepage</h1>
+  <div class="dashboard">
+    <h1 class="subheading grey--text">Dashboard</h1>
+
+      <v-container class="my-5">
+        <p>content</p>
+      </v-container>
   </div>
+
+</template>
+
+<script>
+
+  export default {
+   
+  }
+
+  
+</script>
+
        <!-- <v-btn class="hidden-md-and-up">click me</v-btn> -->
         <!-- <v-btn class="hidden-sm-only">click me</v-btn> -->
 
@@ -37,11 +53,3 @@
         <v-btn fab depressed small dark color="purple">
             <v-icon> favorite</v-icon>
         </v-btn>    -->
-</template>
-
-<script>
-
-  export default {
-   
-  }
-</script>
