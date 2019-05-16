@@ -3,7 +3,28 @@
     <h1 class="subheading grey--text">Dashboard</h1>
 
       <v-container class="my-5">
-        <p>content</p>
+        <v-card flat v-for="project in projects" >
+          <v-layout row wrap :class="`pa-3 project ${project.status}`">
+            <v-flex xs12 md6>
+              <div class="caption grey--text">Project title</div>
+              <div>{{project.title}}</div>
+            </v-flex>
+            <v-flex xs6 sm4 md2>
+              <div class="caption grey--text">Person</div>
+              <div> {{project.person}} </div>
+            </v-flex>
+            <v-flex xs6 sm4 md2>
+              <div class="caption grey--text">Due by</div>
+              <div> {{project.due}}</div>
+            </v-flex>
+            <v-flex xs2 sm4 md2>
+              <div class="caption grey--text">Status</div>
+              <div> {{project.status}} </div>
+            </v-flex>
+          </v-layout>
+          <v-divider></v-divider>
+        </v-card>
+       
       </v-container>
   </div>
 
@@ -12,44 +33,29 @@
 <script>
 
   export default {
-   
+      data() {
+    return {
+        projects: [
+          { title: 'Design a new website', person: 'Roberta', due: '31st Jul 2019', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+          { title: 'Code up and style Properties Availability website', person: 'Roberta', due: '3rd May 2019', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+          { title: 'Code up Women Wishes website', person: 'Roberta', due: '20th May 2018', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+          { title: 'Restyle Pokemons app with Vuetify', person: 'Roberta', due: '15th May Jun 2019', status: 'overdue', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+        ]
+      }
+    }
   }
 
-  
 </script>
 
-       <!-- <v-btn class="hidden-md-and-up">click me</v-btn> -->
-        <!-- <v-btn class="hidden-sm-only">click me</v-btn> -->
-
-        <!-- <v-btn class="hidden-md-and-down">click me</v-btn> -->
-           
-
-      <!-- <p class="red white--text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa odit modi cum minima magnam optio dolores sunt dolore non veritatis velit aut, laborum perspiciatis? Esse cum quidem id quam ipsam.</p>
-      <p class="pink lighten-4 red--text text--darken-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa odit modi cum minima magnam optio dolores sunt dolore non veritatis velit aut, laborum perspiciatis? Esse cum quidem id quam ipsam.</p>
-      <h1 class="display-4">Massive Display</h1>
-      <h4 class="display-1">Smaller Display</h4>
-      <p class="headline"> This is a headline</p>
-       <p class="subheading font-weight-bold"> This is a subheading</p>
-       <p class="caption"> This is a caption</p>  -->
-       <!-- <v-btn class="pink white--text"> click me</v-btn> background-color and text with shadow -->
-        <!-- <v-btn depressed color="pink"> click me</v-btn>   background-color without shadow -->
-        <!-- <v-btn flat color="pink"> click me</v-btn>   no shadow, transparent background and color pink. Hover and light pink background -->
-
-        <!-- <v-btn depressed class="pink white--text">
-            <v-icon left> email</v-icon>
-            <span> email me</span>
-        </v-btn>   
-
-        <v-btn depressed small class="pink white--text">
-            <v-icon left small> email</v-icon>
-            <span> email me</span>
-        </v-btn>
-
-        <v-btn depressed large class="pink white--text font-weight-bold">
-            <span> email me</span>
-            <v-icon right large> email</v-icon>
-        </v-btn>   
-
-        <v-btn fab depressed small dark color="purple">
-            <v-icon> favorite</v-icon>
-        </v-btn>    -->
+  <style>
+    .project.complete {
+      border-left: 4px solid #3cd1c2
+    }
+    .project.ongoing{
+      border-left: 4px solid orange
+    }
+    .project.overdue{
+      border-left: 4px solid tomato;
+    }
+  </style>
+  
