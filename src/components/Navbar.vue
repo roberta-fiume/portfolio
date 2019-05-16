@@ -5,7 +5,7 @@
             <v-toolbar-side-icon @click="drawer = !drawer" class="grey--text">
             </v-toolbar-side-icon>
             <v-toolbar-title class="text-uppercase grey--text">
-                <span class="font-weight-light">See</span>
+                <span class="font-weight-light">My</span>
                 <span>Projects</span>
             </v-toolbar-title>
 
