@@ -10,6 +10,18 @@
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
+  
+            <v-menu offset-y> <!--offeset-y is used to not cover de menu, but displays the dropdown under the menu button  -->
+                <v-btn flat slot="activator" color="grey">
+                    <v-icon left>expand_more</v-icon>
+                    <span>Menu</span>
+                </v-btn>
+                <v-list>
+                    <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+                        <v-list-tile-title >{{ link.text }}</v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
 
             <v-btn flat color="grey">
                 <span>Sign Out</span>
