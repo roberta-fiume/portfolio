@@ -23,7 +23,7 @@
         
         </v-layout>
 
-        <v-card flat v-for="project in projects" >
+        <v-card flat v-for="project in projects" :key="project.status">
           <v-layout row wrap :class="`pa-3 project ${project.status}`">
             <v-flex xs12 md6>
               <div class="caption grey--text">Project title</div>
@@ -52,15 +52,16 @@
 </template>
 
 <script>
+import db from '@/fb'
 
   export default {
       data() {
         return {
           projects: [
-            { title: 'Design a new website', person: 'Roberta', due: '31st Jul 2019', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-            { title: 'Code up and style Properties Availability website', person: 'Roberta', due: '3rd May 2019', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-            { title: 'Code up Women Wishes website', person: 'Roberta', due: '20th May 2018', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
-            { title: 'Restyle Pokemons app with Vuetify', person: 'Roberta', due: '15th May Jun 2019', status: 'overdue', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+            // { title: 'Design a new website', person: 'Roberta', due: '31st Jul 2019', status: 'ongoing', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+            // { title: 'Code up and style Properties Availability website', person: 'Roberta', due: '3rd May 2019', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+            // { title: 'Code up Women Wishes website', person: 'Roberta', due: '20th May 2018', status: 'complete', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
+            // { title: 'Restyle Pokemons app with Vuetify', person: 'Roberta', due: '15th May Jun 2019', status: 'overdue', content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
           ]
         } 
       },
@@ -68,6 +69,20 @@
         sortBy(property) {
           this.projects.sort((a,b) => a[property] < b[property] ? -1 : 1)
         }
+      },
+      created() {
+        db.collection('projects').onSnapshot(res => {
+          const changes = res.docChanges();
+
+         changes.forEach(change => {
+           if(change.type === 'added') {
+             this.projects.push({
+               ...change.doc.data(),
+               id: change.doc.id
+             })
+           }
+         })
+        })
       }
   }
 

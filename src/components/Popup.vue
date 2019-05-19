@@ -52,9 +52,11 @@ export default {
                    person: 'Roberta',
                    status: 'ongoing'
                }
-               db.collection('projects') .add(project).then(() => {
+               let databaseAddPromise = db.collection('projects').add(project);
+               databaseAddPromise.then(() => {
                    this.loading = false;
                    this.dialog = false;
+                   this.$emit('projectAdded')
                })
             }
         }
