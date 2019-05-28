@@ -26,7 +26,7 @@
           </v-flex> 
           <v-flex xs6 md6 lg6 class="white pa-3 ml-3">
                 <div class="title grey--text mb-2">Who I am</div>
-                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, nesciunt autem laudantium perspiciatis aperiam laborum quis neque. Autem fuga, officiis a soluta aliquam debitis, eum rem possimus, hic inventore libero.</div>
+                <div>Hi everyone! My name is Roberta and I am a self-learner front-end developer. I discovered my passion for coding after doing some internships in web design. I have been learning Vue.js for the past 6 months. Before that, I dedicated myself to learning HTML, CSS and the basics of vanilla JavaScript. I always say that being a front-end developer is like being a wizard: just by writing some code I can create amazing magic and make appear whatever you want! </div>
           </v-flex>
        </v-layout>
     </v-container>
