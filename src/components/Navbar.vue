@@ -27,10 +27,16 @@
                 </v-list>
             </v-menu>
 
+          
+            <Login @openDialog="dialog = true" />
+            
+
             <v-btn flat color="grey">
                 <span>Sign Out</span>
                 <v-icon right>exit_to_app</v-icon>
             </v-btn>
+
+          
         </v-toolbar>
 
         <v-navigation-drawer app v-model="drawer" class="primary">
@@ -62,10 +68,12 @@
 <script>
 
 import Popup from './Popup.vue'
+import Login from './Login.vue'
 
 export default {
     components: {
-        Popup
+        Popup,
+        Login
     },
   data() {
     return {
@@ -74,8 +82,9 @@ export default {
         { icon: 'dashboard', text: 'Dashboard', route: '/' },
         { icon: 'folder', text: 'My Projects', route: '/projects' },
         { icon: 'person', text: 'About me', route: '/about-me' },
+     
       ],
-      snackbar: false
+      snackbar: false,
     }
   }
 }

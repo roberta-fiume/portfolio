@@ -6,6 +6,7 @@ import AboutMe from './views/AboutMe.vue'
 
 
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -24,8 +25,8 @@ export default new Router({
       path:'/about-me',
       name:'about-me',
       component: AboutMe
-    }
-
+    },
+  
 
   ]
 })

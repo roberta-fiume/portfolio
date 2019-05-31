@@ -42,6 +42,7 @@ export default {
         }
     },
     methods: {
+      
         submit() {
             if (this.$refs.form.validate()) {
                this.loading = true;
