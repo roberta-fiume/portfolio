@@ -1,6 +1,9 @@
 <template>
+<div>
+    <v-btn flat class="success" v-if="buttonAddProjects" v-on:click.native="showDialog()"> Add New Project </v-btn>
     <v-dialog max-width="600px" v-model="dialog" >
-        <v-btn flat slot="activator" class="success" v-if="buttonAddProjects"> Add New Project </v-btn>
+        <!-- <v-btn flat slot="activator" class="success" v-if="showButton"> Add New Project </v-btn> -->
+        <!-- <v-btn flat slot="activator" class="success"> Add New Project 1111 </v-btn> -->
         <v-card>
             <v-card-title>
                 <h2>Add a New Project</h2>
@@ -22,16 +25,19 @@
             </v-card-text>
         </v-card>
     </v-dialog>
+</div>
 </template>
 
 <script>
 import format from 'date-fns/format'
 import db from '@/fb'
 import userModel from '@/plugins/userModel.js'
-import {eventBus} from "@/main.js";
+
 
 
 export default {
+    props: ['drawerProp'],
+
     data(){
         return {
             title: "",
@@ -42,9 +48,10 @@ export default {
             ],
             loading: false,
             dialog: false,
-            buttonAddProjects: false
+            buttonAddProjects: userModel.data.isUserLoggedIn
         }
     },
+
     methods: {
       
         submit() {
@@ -65,18 +72,24 @@ export default {
                })
             }
         },
-
-        passButtonProperty() {
-            eventBus.$emit('booleanProperty', this.buttonAddProjects)
+        showDialog() {
+            this.dialog = true;
         }
-
-     
     },
+    
+
     computed: {
         formattedDate() {
             return this.due ? format(this.due, 'Do MMM YYYY') : ''
         }
+    },
+    watch: {
+    drawerProp(newValue, oldValue) {
+        if (newValue) {
+            this.buttonAddProjects = userModel.data.isUserLoggedIn;
+        }
     }
+  }
 }
 </script>
 

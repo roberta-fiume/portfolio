@@ -6,8 +6,7 @@
           <v-btn flat color="white" @click="snackbar = false">Close</v-btn>
       </v-snackbar>
         <v-toolbar flat app>
-            <v-toolbar-side-icon @click="drawer = !drawer" class="grey--text">
-            </v-toolbar-side-icon>
+            <v-toolbar-side-icon @click="drawer = !drawer" class="grey--text"></v-toolbar-side-icon>
             <v-toolbar-title class="text-uppercase grey--text">
                 <span class="font-weight-light">My</span>
                 <span>Projects</span>
@@ -47,8 +46,10 @@
                     </v-avatar>
                     <p class="white--text subheading mt-1 ml-3">Roberta</p>
                 </v-flex>
+
+
                 <v-flex class="mt-4 mb-3">
-                    <Popup @projectAdded="snackbar = true" />
+                    <Popup @projectAdded="snackbar = true" :drawerProp="drawer"/>
                 </v-flex>
             </v-layout>
         <v-list>
@@ -75,18 +76,26 @@ export default {
         Popup,
         Login
     },
-  data() {
-    return {
-      drawer: false,
-      links: [
-        { icon: 'dashboard', text: 'Dashboard', route: '/' },
-        { icon: 'folder', text: 'My Projects', route: '/projects' },
-        { icon: 'person', text: 'About me', route: '/about-me' },
-     
-      ],
-      snackbar: false,
-    }
-  }
+    data() {
+            return {
+            drawer: false,
+            links: [
+                { icon: 'dashboard', text: 'Dashboard', route: '/' },
+                { icon: 'folder', text: 'My Projects', route: '/projects' },
+                { icon: 'person', text: 'About me', route: '/about-me' },
+            
+            ],
+            snackbar: false,
+            }
+        }
+
+  
+  
+
+  
+  
+
+ 
 }
 </script>
 

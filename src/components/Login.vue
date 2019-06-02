@@ -22,8 +22,8 @@
   import { validationMixin } from 'vuelidate'
   import { required, maxLength, email } from 'vuelidate/lib/validators'
   import db from '@/fb'
- import userModel from '@/plugins/userModel'
- import {eventBus} from "@/main.js";
+  import userModel from '@/plugins/userModel'
+
 
 
   export default {
@@ -41,7 +41,7 @@
       dialog: false,
       permission: "",
       loginButton: true,
-      addProjects: null
+
     }),
 
     computed: {
@@ -70,16 +70,10 @@
                     let usernameFirebase = doc.data().email;
                     let passwordFirebase = doc.data().password;
                     if (this.email === usernameFirebase && this.password === passwordFirebase) {
-                        let user = userModel.data.isUserLoggedIn;
-                        user = true
+                       userModel.data.isUserLoggedIn = true
+                       console.log("THIS IS THE USER ",userModel.data.isUserLoggedIn)
                         this.loginButton = false
-                        console.log("THIS IS THE USER", user)
                         this.dialog = false;
-
-                           eventBus.$on('booleanProperty', (property) => {
-                            this.addProjects = property;
-                            console.log("this is the button property:", this.addProjects)
-                            });
                     } else {
                        this.dialog = true;
                        this.permission = "THE DATA THAT YOU INSERTED ARE NOT CORRECT.";
