@@ -16,7 +16,7 @@
 
   const db = firebase.firestore();
 
-  db.settings({ timestampsInSnapshots: true }); //to not get the warnings in the console
+  // db.settings({ timestampsInSnapshots: true }); //to not get the warnings in the console
 
   export default db;
 

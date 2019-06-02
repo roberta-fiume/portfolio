@@ -1,6 +1,6 @@
 <template>
     <v-dialog max-width="600px" v-model="dialog" >
-        <v-btn flat slot="activator" class="success"> Add New Project </v-btn>
+        <v-btn flat slot="activator" class="success" v-if="buttonAddProjects"> Add New Project </v-btn>
         <v-card>
             <v-card-title>
                 <h2>Add a New Project</h2>
@@ -27,6 +27,9 @@
 <script>
 import format from 'date-fns/format'
 import db from '@/fb'
+import userModel from '@/plugins/userModel.js'
+import {eventBus} from "@/main.js";
+
 
 export default {
     data(){
@@ -38,7 +41,8 @@ export default {
                 v => v.length >= 3 || 'Minimum lenght is 3 characters'
             ],
             loading: false,
-            dialog: false
+            dialog: false,
+            buttonAddProjects: false
         }
     },
     methods: {
@@ -60,7 +64,13 @@ export default {
                    this.$emit('projectAdded')
                })
             }
+        },
+
+        passButtonProperty() {
+            eventBus.$emit('booleanProperty', this.buttonAddProjects)
         }
+
+     
     },
     computed: {
         formattedDate() {

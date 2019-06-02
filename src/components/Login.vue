@@ -1,7 +1,7 @@
 <template>
 
-    <v-dialog max-width="550px" v-model="dialog" color="white">
-        <v-btn flat slot="activator" color="grey"> <v-icon left>account_circle</v-icon> Login </v-btn>
+    <v-dialog max-width="550px" color="white" v-model="dialog">
+        <v-btn flat slot="activator" color="grey" v-if="loginButton"> <v-icon left>account_circle</v-icon> Login </v-btn>
         <v-card class="pa-3">
             <v-text-field 
                 v-model="email" :error-messages="emailErrors" label="E-mail" required @input="$v.email.$touch()" @blur="$v.email.$touch()">
@@ -18,9 +18,13 @@
 </template>
 
 <script>
+
   import { validationMixin } from 'vuelidate'
   import { required, maxLength, email } from 'vuelidate/lib/validators'
   import db from '@/fb'
+ import userModel from '@/plugins/userModel'
+ import {eventBus} from "@/main.js";
+
 
   export default {
     mixins: [validationMixin],
@@ -36,6 +40,8 @@
       password: '',
       dialog: false,
       permission: "",
+      loginButton: true,
+      addProjects: null
     }),
 
     computed: {
@@ -61,22 +67,32 @@
         retrieveUserDetails() {
             db.collection('user').get().then((response) => {
                 response.docs.forEach(doc => {
-                    let usernameFirebase = doc.data().username;
+                    let usernameFirebase = doc.data().email;
                     let passwordFirebase = doc.data().password;
-                    if (this.name === usernameFirebase && this.password === passwordFirebase) {
-                       this.dialog = false;
+                    if (this.email === usernameFirebase && this.password === passwordFirebase) {
+                        let user = userModel.data.isUserLoggedIn;
+                        user = true
+                        this.loginButton = false
+                        console.log("THIS IS THE USER", user)
+                        this.dialog = false;
+
+                           eventBus.$on('booleanProperty', (property) => {
+                            this.addProjects = property;
+                            console.log("this is the button property:", this.addProjects)
+                            });
                     } else {
                        this.dialog = true;
-                       this.permission = "YOU HAVE NOT THE PERMISSION TO ACCESS";
+                       this.permission = "THE DATA THAT YOU INSERTED ARE NOT CORRECT.";
                     }
                 })
             })
         },
-      submit () {
-        this.$v.$touch();
-        this.retrieveUserDetails()
-
-      },
+        submit () {
+            this.$v.$touch();
+            this.retrieveUserDetails()
+        },
+        
+    
 
       clear () {
         this.$v.$reset()
