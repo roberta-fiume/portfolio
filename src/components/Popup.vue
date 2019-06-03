@@ -2,8 +2,6 @@
 <div>
     <v-btn flat class="success" v-if="buttonAddProjects" v-on:click.native="showDialog()"> Add New Project </v-btn>
     <v-dialog max-width="600px" v-model="dialog" >
-        <!-- <v-btn flat slot="activator" class="success" v-if="showButton"> Add New Project </v-btn> -->
-        <!-- <v-btn flat slot="activator" class="success"> Add New Project 1111 </v-btn> -->
         <v-card>
             <v-card-title>
                 <h2>Add a New Project</h2>
@@ -84,12 +82,12 @@ export default {
         }
     },
     watch: {
-    drawerProp(newValue, oldValue) {
-        if (newValue) {
-            this.buttonAddProjects = userModel.data.isUserLoggedIn;
+        drawerProp(newValue, oldValue) {
+            if (newValue) {
+                this.buttonAddProjects = userModel.data.isUserLoggedIn;
+            }
         }
     }
-  }
 }
 </script>
 

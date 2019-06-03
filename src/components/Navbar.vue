@@ -26,16 +26,12 @@
                 </v-list>
             </v-menu>
 
-          
-            <Login @openDialog="dialog = true" />
-            
-
-            <v-btn flat color="grey">
-                <span>Sign Out</span>
-                <v-icon right>exit_to_app</v-icon>
+            <v-btn flat color="grey" v-if="signout" @click="logOut">
+                <span>Sign Out</span><v-icon right>exit_to_app</v-icon>
             </v-btn>
 
-          
+            <Login @openDialog="dialog = true" :signoutProp="signout" v-on:childToParent="onChildClick" />
+
         </v-toolbar>
 
         <v-navigation-drawer app v-model="drawer" class="primary">
@@ -70,6 +66,7 @@
 
 import Popup from './Popup.vue'
 import Login from './Login.vue'
+import userModel from '@/plugins/userModel.js'
 
 export default {
     components: {
@@ -77,7 +74,7 @@ export default {
         Login
     },
     data() {
-            return {
+        return {
             drawer: false,
             links: [
                 { icon: 'dashboard', text: 'Dashboard', route: '/' },
@@ -86,16 +83,22 @@ export default {
             
             ],
             snackbar: false,
-            }
+            signout: false
         }
+    },
 
-  
-  
+    methods: {
+         onChildClick(value) {
+             this.signout = value;
+           console.log("THIS IS THE SIGNOUT IN THE PARENT", value)
+        },
 
-  
-  
+        logOut() {
+            userModel.data.isUserLoggedIn = false;
+            this.signout = false;
+        }
+    }
 
- 
 }
 </script>
 
