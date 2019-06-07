@@ -30,7 +30,7 @@
                 <span>Sign Out</span><v-icon right>exit_to_app</v-icon>
             </v-btn>
 
-            <Login @openDialog="dialog = true" :signoutProp="signout" v-on:childToParent="onChildClick" />
+            <Login @openDialog="dialog = true" :signoutProp="signout" v-on:childToParent="onChildClick" :loginButtonProp="changeLoginButtonStatus" v-on:changeLoginButton="changeButtonStatus" /> 
 
         </v-toolbar>
 
@@ -83,7 +83,8 @@ export default {
             
             ],
             snackbar: false,
-            signout: false
+            signout: false,
+            changeLoginButtonStatus: false
         }
     },
 
@@ -96,6 +97,13 @@ export default {
         logOut() {
             userModel.data.isUserLoggedIn = false;
             this.signout = false;
+            this.changeLoginButtonStatus = true;
+            console.log("THIS IS THE LOGIN STATUS IN PARENT", this.changeLoginButtonStatus)
+        },
+
+        changeButtonStatus() {
+            this.changeLoginButtonStatus = true
+            console.log("I changed the status:", this.changeLoginButtonStatus)
         }
     }
 

@@ -1,9 +1,9 @@
 <template>
 
-    <v-dialog max-width="550px" color="white" v-model="dialog">
+    <v-dialog max-width="500px" color="white" v-model="dialog">
         <v-btn flat slot="activator" color="grey" v-if="loginButton"> <v-icon left>account_circle</v-icon> Login </v-btn>
     
-        <v-card class="pa-3">
+        <v-card class="pa-3" >
             <v-text-field 
                 v-model="email" :error-messages="emailErrors" label="E-mail" required @input="$v.email.$touch()" @blur="$v.email.$touch()">
             </v-text-field>
@@ -28,7 +28,7 @@
 
 
   export default {
-        props: ['signoutProp'],
+        props: ['signoutProp', 'loginButtonProp'],
         mixins: [validationMixin],
 
         validations: {
@@ -43,7 +43,8 @@
             dialog: false,
             permission: "",
             loginButton: true,
-            signoutButton: userModel.data.isUserLoggedIn
+            signoutButton: userModel.data.isUserLoggedIn,
+           
         }),
 
         computed: {
@@ -81,7 +82,7 @@
                             this.dialog = false;
                         } else {
                         this.dialog = true;
-                        this.permission = "THE DATA THAT YOU INSERTED ARE NOT CORRECT.";
+                        this.permission = "YOU CANNOT ACCESS.";
                         }
                     })
                 })
@@ -103,14 +104,26 @@
         },
 
         watch: {
-        sognoutProp(newValue, oldValue) {
-            if (newValue) {
-                this.signoutButton = userModel.data.isUserLoggedIn;
+     
+            loginButtonProp() {
+                console.log("THIS IS THE LOGIN BUTTON:", this.loginButton);
+                console.log("THIS IS THE LOGIN BUTTON PROP", this.loginButtonProp)
+                if(this.loginButtonProp) {
+                    console.log("LOGIN BUTTON PROP tryyyyy",this.loginButtonProp)
+                    this.loginButton = true;
+                    console.log("THIS IS LOGIN BUTTON STATE tryyyyyyy", this.loginButton);
+                    this.$emit('changeLoginButton');
+                }
             }
         }
-    }
 }
 
   
 </script>
+
+
+<style>
+  
+</style>
+
 

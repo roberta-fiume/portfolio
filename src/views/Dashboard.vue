@@ -23,7 +23,7 @@
         
         </v-layout>
 
-        <v-card flat v-for="project in projects" :key="project.status">
+        <v-card flat v-for="project in projects" :key="project.due">
           <v-layout row wrap :class="`pa-3 project ${project.status}`">
             <v-flex xs12 md6>
               <div class="caption grey--text">Project title</div>
