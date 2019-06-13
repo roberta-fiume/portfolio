@@ -98,7 +98,8 @@ export default {
             userModel.data.isUserLoggedIn = false;
             this.signout = false;
             this.changeLoginButtonStatus = true;
-            console.log("THIS IS THE LOGIN STATUS IN PARENT", this.changeLoginButtonStatus)
+            console.log("THIS IS THE LOGIN STATUS IN PARENT", this.changeLoginButtonStatus);
+            this.drawer = false;
         },
 
         changeButtonStatus() {

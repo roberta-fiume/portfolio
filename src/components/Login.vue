@@ -104,7 +104,6 @@
         },
 
         watch: {
-     
             loginButtonProp() {
                 console.log("THIS IS THE LOGIN BUTTON:", this.loginButton);
                 console.log("THIS IS THE LOGIN BUTTON PROP", this.loginButtonProp)
