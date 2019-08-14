@@ -12,7 +12,7 @@
                      </v-avatar>
                   </v-responsive>
                   <v-card-text>
-                      <div class="class suheading">{{person.name}}</div>
+                      <div class="class subheading">{{person.name}}</div>
                       <div class="class grey--text"> {{person.role}}
                       </div>
                   </v-card-text>
@@ -26,7 +26,9 @@
           </v-flex> 
           <v-flex xs12 sm12 md6 lg6 class="white pa-3 ml-3" >
                 <div class="title grey--text mb-2">Who I am</div>
-                <div>Hi everyone! My name is Roberta and I am a self-learner front-end developer. I discovered my passion for coding after doing some internships in web design. I have been learning Vue.js for the past 6 months. Before that, I dedicated myself to learning HTML, CSS and the basics of vanilla JavaScript. I always say that being a front-end developer is like being a wizard: just by writing some code I can create amazing magic and make appear whatever you want! </div>
+                <div>Hi everyone! My name is Roberta and I am a self-learner front-end developer. I discovered my passion for coding after doing some internships in web design. I followed a Web and Graphic Design course and after that I got a job as a Junior Front End Developer.
+                    As I never stop learning, I have been learning Vue.js on my own since the last year and I fell in love with it! 
+                    I always say that being a front-end developer is like being a wizard: just by writing some code I can create amazing magic and make appear whatever you want! </div>
           </v-flex>
        </v-layout>
     </v-container>
